@@ -1,4 +1,3 @@
-import kotlin.math.tan
 
 fun main() {
     println("Welcome! To-Do App")
@@ -6,9 +5,11 @@ fun main() {
     while (true) {
         println("To add use 'Add', to delete use 'Delete', to view use 'Show', to find use 'Find', and to edit use 'Edit'")
         val input = readlnOrNull().toString()
-        when (input) {
-            "Add" -> addTodo(todoList)
-            "Show" -> showTodo(todoList)
+        val lowerCaseInput = input.lowercase()
+        when (lowerCaseInput) {
+            "add" -> addTodo(todoList)
+            "show" -> showTodo(todoList)
+            "delete" -> deleteTodo(todoList)
             else -> {
                 println("You Entered Wrong Value")
                 continue
@@ -22,10 +23,11 @@ fun addTodo(todoList: MutableList<String?>){
     println("Type 'Exit' to Exit")
     while (true) {
         val userInput = readlnOrNull()
+        val lowerCaseUserInput = userInput?.lowercase()
         if (userInput == null) {
             println("You entered wrong value.")
             continue
-        } else if (userInput == "Exit") {
+        } else if (lowerCaseUserInput == "exit") {
             break
         } else {
             todoList.add(userInput)
@@ -34,7 +36,7 @@ fun addTodo(todoList: MutableList<String?>){
 }
 
 fun showTodo(todoList: MutableList<String?>): MutableList<String?> {
-    println("Todo Listesi:")
+    println("Todo List:")
     val show: MutableList<String?> = mutableListOf()
     var count = 1
     for (i in todoList) {
@@ -42,4 +44,12 @@ fun showTodo(todoList: MutableList<String?>): MutableList<String?> {
         count++
     }
     return show
+}
+
+fun deleteTodo(todoList: MutableList<String?>){
+    showTodo(todoList)
+    println("Enter the number you want to remove:")
+    val userInput = readln().toInt()
+    val updatedUserInput = userInput.minus(1) //
+    todoList.removeAt(updatedUserInput)
 }
