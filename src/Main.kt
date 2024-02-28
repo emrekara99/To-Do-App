@@ -1,4 +1,3 @@
-
 fun main() {
     println("Welcome! To-Do App")
     val todoList: MutableList<String?> = mutableListOf()
@@ -19,7 +18,7 @@ fun main() {
     }
 }
 
-fun addTodo(todoList: MutableList<String?>){
+fun addTodo(todoList: MutableList<String?>) {
     println("Enter To-Do :")
     println("Type 'Exit' to Exit")
     while (true) {
@@ -47,7 +46,7 @@ fun showTodo(todoList: MutableList<String?>): MutableList<String?> {
     return show
 }
 
-fun deleteTodo(todoList: MutableList<String?>){
+fun deleteTodo(todoList: MutableList<String?>) {
     showTodo(todoList)
     println("Enter the number you want to remove:")
     val userInput = readln().toInt()
@@ -55,16 +54,20 @@ fun deleteTodo(todoList: MutableList<String?>){
     todoList.removeAt(updatedUserInput)
 }
 
-fun findTodo(todoList: MutableList<String?>){
-    while (true){
+fun findTodo(todoList: MutableList<String?>) {
+    while (true) {
         println("To find a To-do Enter the first letter:")
         val userInput = readlnOrNull()
-        if (userInput == null){
+        var count = 1
+        if (userInput == null) {
             println("You Entered Wrong Value")
             continue
-        }else{
-            for (i in todoList)
-            todoList.filter { it?.startsWith(userInput) ?: true }
+        } else {
+            val asd = todoList.filter { it?.startsWith(userInput) ?: true }
+            for (i in asd){
+                println("$count-$i")
+                count++
+            }
         }
-   }
+    }
 }
