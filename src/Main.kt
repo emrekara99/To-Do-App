@@ -10,6 +10,7 @@ fun main() {
             "show" -> showTodo(todoList)
             "delete" -> deleteTodo(todoList)
             "find" -> findTodo(todoList)
+            "edit" -> editTodo(todoList)
             else -> {
                 println("You Entered Wrong Value")
                 continue
@@ -29,10 +30,10 @@ fun addTodo(todoList: MutableList<String?>) {
             continue
         } else if (lowerCaseUserInput == "exit") {
             break
-        }else if (userInput.first() == ' '){
+        } else if (userInput.first() == ' ') {
             println("You entered Wrong value")
             continue
-        }else {
+        } else {
             todoList.add(userInput)
         }
 
@@ -69,10 +70,29 @@ fun findTodo(todoList: MutableList<String?>) {
             continue
         } else {
             val asd = todoList.filter { it?.startsWith(userInput) ?: true }
-            for (i in asd){
+            for (i in asd) {
                 println("$count-$i")
                 count++
             }
+            break
+        }
+    }
+}
+
+fun editTodo(todoList: MutableList<String?>) {
+    while (true) {
+        showTodo(todoList)
+        println("Enter the number of To-Do You want to edit")
+        val userInput: Int? = readln().toIntOrNull()
+        if (userInput == null) {
+            println("You entered wrong value")
+            continue
+        }else {
+            println("Enter Edited To-Do:")
+            val editedTodo = readlnOrNull().toString()
+            todoList.removeAt(userInput-1)
+            todoList.add(index = userInput-1,editedTodo)
+            showTodo(todoList)
             break
         }
     }
