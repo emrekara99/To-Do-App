@@ -29,9 +29,14 @@ fun addTodo(todoList: MutableList<String?>) {
             continue
         } else if (lowerCaseUserInput == "exit") {
             break
-        } else {
+        }else if (userInput.first() == ' '){
+            println("You entered Wrong value")
+            continue
+        }else {
             todoList.add(userInput)
         }
+
+
     }
 }
 
@@ -68,6 +73,7 @@ fun findTodo(todoList: MutableList<String?>) {
                 println("$count-$i")
                 count++
             }
+            break
         }
     }
 }
