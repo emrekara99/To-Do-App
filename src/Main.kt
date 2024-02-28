@@ -10,6 +10,7 @@ fun main() {
             "add" -> addTodo(todoList)
             "show" -> showTodo(todoList)
             "delete" -> deleteTodo(todoList)
+            "find" -> findTodo(todoList)
             else -> {
                 println("You Entered Wrong Value")
                 continue
@@ -50,6 +51,20 @@ fun deleteTodo(todoList: MutableList<String?>){
     showTodo(todoList)
     println("Enter the number you want to remove:")
     val userInput = readln().toInt()
-    val updatedUserInput = userInput.minus(1) //
+    val updatedUserInput = userInput.minus(1)
     todoList.removeAt(updatedUserInput)
+}
+
+fun findTodo(todoList: MutableList<String?>){
+    while (true){
+        println("To find a To-do Enter the first letter:")
+        val userInput = readlnOrNull()
+        if (userInput == null){
+            println("You Entered Wrong Value")
+            continue
+        }else{
+            for (i in todoList)
+            todoList.filter { it?.startsWith(userInput) ?: true }
+        }
+   }
 }
