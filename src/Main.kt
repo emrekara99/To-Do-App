@@ -25,19 +25,17 @@ fun addTodo(todoList: MutableList<String?>) {
     while (true) {
         val userInput = readlnOrNull()
         val lowerCaseUserInput = userInput?.lowercase()
-        if (userInput == null) {
+        if (userInput.isNullOrEmpty()) {
             println("You entered wrong value.")
+            continue
+        } else if (lowerCaseUserInput?.first() == ' ') {
+            println("You entered Wrong value")
             continue
         } else if (lowerCaseUserInput == "exit") {
             break
-        } else if (userInput.first() == ' ') {
-            println("You entered Wrong value")
-            continue
         } else {
             todoList.add(userInput)
         }
-
-
     }
 }
 
@@ -87,11 +85,12 @@ fun editTodo(todoList: MutableList<String?>) {
         if (userInput == null) {
             println("You entered wrong value")
             continue
-        }else {
+        } else {
+            println("To do To Be edit:${todoList[userInput-1]}")
             println("Enter Edited To-Do:")
             val editedTodo = readlnOrNull().toString()
-            todoList.removeAt(userInput-1)
-            todoList.add(index = userInput-1,editedTodo)
+            todoList.removeAt(userInput - 1)
+            todoList.add(index = userInput - 1, editedTodo)
             showTodo(todoList)
             break
         }
